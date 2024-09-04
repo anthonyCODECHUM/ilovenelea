@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NELEA_BEA.COM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="card-header">
+            <input id="inputText" type="text" placeholder="Enter your text here" aria-label="Input">
+            <!-- Button trigger password modal -->
+            <button type="button" class="btn btn-danger" id="openModalButton">
+                <i class="fa-solid fa-heart"></i>
+            </button>
+            <!-- Dark Mode Toggle Button -->
+            <button type="button" class="btn btn-secondary" id="toggleDarkMode">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+            <!-- Fullscreen Toggle Button -->
+            <button type="button" class="btn btn-primary" id="toggleFullscreen">
+                <i class="fa-solid fa-expand"></i>
+            </button>
+
+            <!-- Example single danger button -->
+            <div class="btn-group">
+                <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-brush text-danger"></i>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#" id="red">Red&gray</a></li>
+                    <li><a class="dropdown-item" href="#" id="purple">Purple&gray</a></li>
+                    <li><a class="dropdown-item" href="#" id="pink">Pink&gray</a></li>
+                    <li><a class="dropdown-item" href="#" id="normal">Normal</a></li>
+                </ul>
+            </div>
+
+            <!-- Password Modal -->
+            <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="passwordModalLabel">Enter Password</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="password" id="passwordInput" class="form-control" placeholder="Password">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="submitPasswordButton">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">I LOVE YOU ALWAYS <i class="fa-solid fa-heart-pulse text-danger"></i></h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="1st.jpg" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="4th.jpg" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="2nd.jpg" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="3rd.jpg" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="5fth.jpg" class="d-block w-100" alt="...">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="text" id="displayText">
+                <span class="charbox">
+                    <span class="char text-primary">I love you <i class="fa-regular fa-face-kiss-wink-heart "></i></span>
+                    <span class="count">1</span>
+                </span>
+            </div>
+        </div>
+        <div class="card-footer text-body-secondary">
+            MADE WITH LOVE BY NELEA BEA - <a href="https://web.facebook.com/antony.capuyan" class="text-danger">Coder@MrAnthony.com <i class="fa-brands fa-facebook"></i></a>
+        </div>
+    </div>
+
+    <script>
+        let selectedColor = 'normal'; // Default color
+
+        document.getElementById('inputText').addEventListener('input', function () {
+            const displayText = this.value;
+            const textContainer = document.getElementById('displayText');
+            textContainer.innerHTML = ''; // Clear previous content
+
+            let count = 1;
+
+            if (displayText === '') {
+                textContainer.innerHTML = `<span class="charbox"><span class="char">Default Text</span><span class="count">1</span></span>`;
+            } else {
+                for (let i = 0; i < displayText.length; i++) {
+                    const char = displayText[i];
+                    const span = document.createElement('span');
+                    span.className = 'charbox';
+                    span.innerHTML = `<span class="char">${char}</span>`;
+
+                    if (char !== ' ') {
+                        span.innerHTML += `<span class="count">${count}</span>`;
+                        count++;
+                    }
+
+                    textContainer.appendChild(span);
+                }
+            }
+
+            applyColor(selectedColor); // Apply the selected color
+            adjustFontSize(textContainer);
+        });
+
+        function adjustFontSize(textContainer) {
+            const containerWidth = textContainer.clientWidth;
+            let fontSize = 100; // Start with a large font size
+            textContainer.style.fontSize = `${fontSize}px`;
+
+            while (textContainer.scrollWidth > containerWidth && fontSize > 10) { // Ensure the text fits within the container
+                fontSize--;
+                textContainer.style.fontSize = `${fontSize}px`;
+            }
+        }
+
+        window.addEventListener('resize', function () {
+            adjustFontSize(document.getElementById('displayText')); // Adjust on window resize
+        });
+
+        function applyColor(color) {
+            const colorMap = {
+                'red': ['red', 'gray'], // odd and even colors
+                'purple': ['purple', 'gray'],
+                'pink': ['pink', 'gray'],
+                'normal': ['black', 'gray'] // Default colors
+            };
+
+            const [oddColor, evenColor] = colorMap[color] || ['black', 'gray'];
+            const charboxes = document.querySelectorAll('#displayText .charbox');
+            charboxes.forEach((box, index) => {
+                const char = box.querySelector('.char').textContent;
+                if (char !== ' ') {
+                    box.style.backgroundColor = (index % 2 === 0) ? oddColor : evenColor;
+                }
+            });
+        }
+
+        const colorButtons = document.querySelectorAll('.dropdown-item');
+        colorButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                selectedColor = this.id; // Get the color name from the button id
+                applyColor(selectedColor); // Apply the selected color
+            });
+        });
+
+        document.getElementById('openModalButton').addEventListener('click', function () {
+            const passwordModal = new bootstrap.Modal(document.getElementById('passwordModal'));
+            passwordModal.show();
+        });
+
+        document.getElementById('submitPasswordButton').addEventListener('click', function () {
+            const enteredPassword = document.getElementById('passwordInput').value;
+            const correctPassword = 'neleacapuyan'; // Replace with your desired password
+
+            if (enteredPassword === correctPassword) {
+                const passwordModal = bootstrap.Modal.getInstance(document.getElementById('passwordModal'));
+                passwordModal.hide();
+                const exampleModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+                exampleModal.show();
+            } else {
+                alert('Incorrect password');
+            }
+        });
+
+        // Check for the saved theme in localStorage
+        const currentTheme = localStorage.getItem('theme') || 'light-mode';
+        document.body.classList.add(currentTheme);
+
+        // Toggle dark mode/light mode
+        document.getElementById('toggleDarkMode').addEventListener('click', function () {
+            if (document.body.classList.contains('light-mode')) {
+                document.body.classList.replace('light-mode', 'dark-mode');
+                localStorage.setItem('theme', 'dark-mode');
+            } else {
+                document.body.classList.replace('dark-mode', 'light-mode');
+                localStorage.setItem('theme', 'light-mode');
+            }
+        });
+
+        // Function to toggle fullscreen mode
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    alert(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen().catch(err => {
+                        alert(`Error attempting to exit fullscreen mode: ${err.message} (${err.name})`);
+                    });
+                }
+            }
+        }
+
+        // Add event listener to the fullscreen button
+        document.getElementById('toggleFullscreen').addEventListener('click', toggleFullscreen);
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+</body>
+
+</html>
