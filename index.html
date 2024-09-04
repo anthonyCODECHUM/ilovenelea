@@ -14,7 +14,7 @@
 <body>
     <div class="container-fluid">
         <div class="card-header">
-            <input id="inputText" type="text" placeholder="Enter your text here" aria-label="Input">
+            <input id="inputText"   type="text" placeholder="Enter your text here" >
             <!-- Button trigger password modal -->
             <button type="button" class="btn btn-danger" id="openModalButton">
                 <i class="fa-solid fa-heart"></i>
@@ -30,13 +30,13 @@
 
             <!-- Example single danger button -->
             <div class="btn-group">
-                <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fa-solid fa-brush text-danger"></i>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#" id="red">Red&gray</a></li>
-                    <li><a class="dropdown-item" href="#" id="purple">Purple&gray</a></li>
-                    <li><a class="dropdown-item" href="#" id="pink">Pink&gray</a></li>
+                    <li><a class="dropdown-item" href="#" id="red">red & gray</a></li>
+                    <li><a class="dropdown-item" href="#" id="purple">Purple & gray</a></li>
+                    <li><a class="dropdown-item" href="#" id="pink">Pink & gray</a></li>
                     <li><a class="dropdown-item" href="#" id="normal">Normal</a></li>
                 </ul>
             </div>
@@ -103,12 +103,12 @@
         <div class="card">
             <div class="text" id="displayText">
                 <span class="charbox">
-                    <span class="char text-primary">I love you <i class="fa-regular fa-face-kiss-wink-heart "></i></span>
-                    <span class="count">1</span>
+                    <span class="char text-primary char" style="font-size: 50vh;" ><i class="fa-regular fa-face-kiss-wink-heart "></i></span>
+                    <span class="count"></span>
                 </span>
             </div>
         </div>
-        <div class="card-footer text-body-secondary">
+        <div class="card-footer ">
             MADE WITH LOVE BY NELEA BEA - <a href="https://web.facebook.com/antony.capuyan" class="text-danger">Coder@MrAnthony.com <i class="fa-brands fa-facebook"></i></a>
         </div>
     </div>
@@ -124,7 +124,7 @@
             let count = 1;
 
             if (displayText === '') {
-                textContainer.innerHTML = `<span class="charbox"><span class="char">Default Text</span><span class="count">1</span></span>`;
+                textContainer.innerHTML = `<span class="charbox"><span class="char"> <i class="fa-regular fa-face-kiss-wink-heart text-primary "></i></span><span class="count"></span></span>`;
             } else {
                 for (let i = 0; i < displayText.length; i++) {
                     const char = displayText[i];
@@ -133,7 +133,7 @@
                     span.innerHTML = `<span class="char">${char}</span>`;
 
                     if (char !== ' ') {
-                        span.innerHTML += `<span class="count">${count}</span>`;
+                        span.innerHTML += `<span class="count">${count} </span>`;
                         count++;
                     }
 
@@ -141,34 +141,34 @@
                 }
             }
 
-            applyColor(selectedColor); // Apply the selected color
+            applyColor(selectedColor); 
             adjustFontSize(textContainer);
         });
 
         function adjustFontSize(textContainer) {
             const containerWidth = textContainer.clientWidth;
-            let fontSize = 100; // Start with a large font size
+            let fontSize = 100;
             textContainer.style.fontSize = `${fontSize}px`;
 
-            while (textContainer.scrollWidth > containerWidth && fontSize > 10) { // Ensure the text fits within the container
+            while (textContainer.scrollWidth > containerWidth && fontSize > 10) { 
                 fontSize--;
                 textContainer.style.fontSize = `${fontSize}px`;
             }
         }
 
         window.addEventListener('resize', function () {
-            adjustFontSize(document.getElementById('displayText')); // Adjust on window resize
+            adjustFontSize(document.getElementById('displayText')); 
         });
 
         function applyColor(color) {
             const colorMap = {
-                'red': ['red', 'gray'], // odd and even colors
+                'red': ['red', 'gray'], 
                 'purple': ['purple', 'gray'],
                 'pink': ['pink', 'gray'],
-                'normal': ['black', 'gray'] // Default colors
+                'normal': ['rgb(190, 187, 187)', 'gray'] 
             };
 
-            const [oddColor, evenColor] = colorMap[color] || ['black', 'gray'];
+            const [oddColor, evenColor] = colorMap[color] || ['rgb(190, 187, 187)', 'gray'];
             const charboxes = document.querySelectorAll('#displayText .charbox');
             charboxes.forEach((box, index) => {
                 const char = box.querySelector('.char').textContent;
@@ -181,8 +181,8 @@
         const colorButtons = document.querySelectorAll('.dropdown-item');
         colorButtons.forEach(button => {
             button.addEventListener('click', function () {
-                selectedColor = this.id; // Get the color name from the button id
-                applyColor(selectedColor); // Apply the selected color
+                selectedColor = this.id; 
+                applyColor(selectedColor); 
             });
         });
 
@@ -193,7 +193,7 @@
 
         document.getElementById('submitPasswordButton').addEventListener('click', function () {
             const enteredPassword = document.getElementById('passwordInput').value;
-            const correctPassword = 'neleacapuyan'; // Replace with your desired password
+            const correctPassword = 'neleacapuyan'; 
 
             if (enteredPassword === correctPassword) {
                 const passwordModal = bootstrap.Modal.getInstance(document.getElementById('passwordModal'));
@@ -205,11 +205,10 @@
             }
         });
 
-        // Check for the saved theme in localStorage
+       
         const currentTheme = localStorage.getItem('theme') || 'light-mode';
         document.body.classList.add(currentTheme);
 
-        // Toggle dark mode/light mode
         document.getElementById('toggleDarkMode').addEventListener('click', function () {
             if (document.body.classList.contains('light-mode')) {
                 document.body.classList.replace('light-mode', 'dark-mode');
@@ -220,7 +219,6 @@
             }
         });
 
-        // Function to toggle fullscreen mode
         function toggleFullscreen() {
             if (!document.fullscreenElement) {
                 document.documentElement.requestFullscreen().catch(err => {
@@ -235,7 +233,7 @@
             }
         }
 
-        // Add event listener to the fullscreen button
+ 
         document.getElementById('toggleFullscreen').addEventListener('click', toggleFullscreen);
     </script>
 
