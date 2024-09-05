@@ -20,8 +20,8 @@ body, html {
     padding: 10px;
     box-sizing: border-box;
     overflow: hidden;
-    background: #fff;
-    box-shadow: 0 4px 8px rgba(219, 214, 214, 0.2);
+    background-color: transparent;
+   
 }
 
 .card-header {
@@ -30,7 +30,7 @@ body, html {
     justify-content: center;
     align-items: center;
     padding: 10px 0;
-    background: white;
+   
 }
 
 #inputText {
@@ -89,7 +89,7 @@ body, html {
 
 
 .card-footer {
-    background: white;
+    
     padding: 10px;
     text-align: center;
     font-size: 0.75rem;
@@ -118,39 +118,29 @@ body, html {
 /* Light Mode Styles */
 body.light-mode .card-header,
 body.light-mode .card-footer {
-    background-image: url(m4.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: #f0f0f0;
     color: #000;
 }
 
 body.light-mode .card {
-    background-image: url(m4.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: #fff;
     color: #000;
 }
 
 /* Dark Mode Styles */
 body.dark-mode {
-    background-image: url(m3.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: #000000;
     color: #ddd;
 }
 
 body.dark-mode .card-header,
 body.dark-mode .card-footer {
-    background-image: url(m3.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: #000000;
     color: #ddd;
 }
 
 body.dark-mode .card {
-    background-image: url(m3.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: #000000;
     color: #ddd;
 }
 
